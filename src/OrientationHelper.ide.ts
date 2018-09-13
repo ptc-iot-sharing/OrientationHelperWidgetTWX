@@ -50,7 +50,6 @@ class OrientationHelper extends TWComposerWidget {
                     baseType: 'STRING',
                     description: 'Main message to show',
                     defaultValue: 'Please Rotate Your Device',
-                    isBindingTarget: true
                 },
                 'AllowClickBypass': {
                     baseType: 'BOOLEAN',
@@ -61,7 +60,6 @@ class OrientationHelper extends TWComposerWidget {
                     baseType: 'STRING',
                     description: 'Optional message enabled if AllowClickBypass is true',
                     defaultValue: '(or click to continue)',
-                    isBindingTarget: true
                 },
                 'OnlyMobile': {
                     baseType: 'BOOLEAN',
@@ -71,7 +69,7 @@ class OrientationHelper extends TWComposerWidget {
                 'Style': {
                     baseType: 'STYLEDEFINITION',
                     description: 'Configure the style of the display. Background and foreground color properties are used, as well as font size.',
-                    defaultValue: 'OrienationHelperDefaultStyle'
+                    defaultValue: 'OrientationHelperDefaultStyle'
                 }
             }
         };

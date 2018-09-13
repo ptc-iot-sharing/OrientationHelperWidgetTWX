@@ -51,7 +51,7 @@ module.exports = function (env, argv) {
             // generates the metadata xml file and adds it to the archive
             new WidgetMetadataGenerator(),
             new DeclarationBundlerPlugin({
-                moduleName:`${packageJson.name}`,
+                moduleName: `${packageJson.name}`,
                 out: path.join('typings', `${packageJson.name}.d.ts`),
                 excludePattern: new RegExp(`${packageJson.name}\.ide\.d\.ts`)
             }),
@@ -83,6 +83,12 @@ module.exports = function (env, argv) {
 
         module: {
             rules: [
+                {
+                    parser:
+                    {
+                        amd: false
+                    }
+                },
                 {
                     test: /(\.jsx|\.js)$/,
                     exclude: /(node_modules|bower_components)/,
@@ -244,55 +250,55 @@ module.exports = function (env, argv) {
                     'Content-Type': 'application/json',
                     'X-THINGWORX-SESSION': 'true'
                 },
-                body: {packageName: packageName},
+                body: { packageName: packageName },
                 json: true
             },
-            function (err, httpResponse, body) {
-                // load the file from the zip folder
-                let formData = {
-                    file: fs.createReadStream(
-                        path.join(__dirname, 'zip', `${packageJson.name}-${isProduction ? 'min' : 'dev'}-${packageJson.version}.zip`)
-                    )
-                };
-                // POST request to the ExtensionPackageUploader servlet
-                request
-                    .post(
-                        {
-                            url: `${options.thingworxServer}/Thingworx/ExtensionPackageUploader?purpose=import`,
-                            headers: {
-                                'X-XSRF-TOKEN': 'TWX-XSRF-TOKEN-VALUE'
+                function (err, httpResponse, body) {
+                    // load the file from the zip folder
+                    let formData = {
+                        file: fs.createReadStream(
+                            path.join(__dirname, 'zip', `${packageJson.name}-${isProduction ? 'min' : 'dev'}-${packageJson.version}.zip`)
+                        )
+                    };
+                    // POST request to the ExtensionPackageUploader servlet
+                    request
+                        .post(
+                            {
+                                url: `${options.thingworxServer}/Thingworx/ExtensionPackageUploader?purpose=import`,
+                                headers: {
+                                    'X-XSRF-TOKEN': 'TWX-XSRF-TOKEN-VALUE'
+                                },
+                                formData: formData
                             },
-                            formData: formData
-                        },
-                        function (err, httpResponse, body) {
-                            if (err) {
-                                console.error("Failed to upload widget to thingworx");
-                                throw err;
+                            function (err, httpResponse, body) {
+                                if (err) {
+                                    console.error("Failed to upload widget to thingworx");
+                                    throw err;
+                                }
+                                if (httpResponse.statusCode != 200) {
+                                    throw `Failed to upload widget to thingworx. We got status code ${httpResponse.statusCode} (${httpResponse.statusMessage})`;
+                                } else {
+                                    console.log(`Uploaded widget version ${packageJson.version} to Thingworx!`);
+                                }
                             }
-                            if (httpResponse.statusCode != 200) {
-                                throw `Failed to upload widget to thingworx. We got status code ${httpResponse.statusCode} (${httpResponse.statusMessage})`;
-                            } else {
-                                console.log(`Uploaded widget version ${packageJson.version} to Thingworx!`);
-                            }
-                        }
-                    )
-                    .auth(options.thingworxUser, options.thingworxPassword);
+                        )
+                        .auth(options.thingworxUser, options.thingworxPassword);
 
-                if (err) {
-                    console.error("Failed to delete widget from thingworx");
-                    //throw err;
-                }
-                if (httpResponse.statusCode != 200) {
-                    console.log(`Failed to delete widget from thingworx. We got status code ${httpResponse.statusCode} (${httpResponse.statusMessage})
+                    if (err) {
+                        console.error("Failed to delete widget from thingworx");
+                        //throw err;
+                    }
+                    if (httpResponse.statusCode != 200) {
+                        console.log(`Failed to delete widget from thingworx. We got status code ${httpResponse.statusCode} (${httpResponse.statusMessage})
                     body:
                     ${httpResponse.body}`);
-                } else {
-                    console.log(`Deleted previous version of ${packageName} from Thingworx!`);
-                }
-            })
-            .auth(options.thingworxUser, options.thingworxPassword);
+                    } else {
+                        console.log(`Deleted previous version of ${packageName} from Thingworx!`);
+                    }
+                })
+                .auth(options.thingworxUser, options.thingworxPassword);
 
-            
+
         });
     };
     return result;
