@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Entities build="b441" majorVersion="8" minorVersion="3" modelPersistenceProviderPackage="H2PersistenceProviderPackage" revision="1" schemaVersion="1030" universal="">
+    <StyleDefinitions>
+        <StyleDefinition name="OrientationHelperDefaultStyle">
+            <Owner name="Administrator" type="User"/>
+            <content><![CDATA[{
+  "backgroundColor" : "#ffffff",
+  "displayString" : "",
+  "fontEmphasisBold" : false,
+  "fontEmphasisItalic" : false,
+  "fontEmphasisUnderline" : false,
+  "foregroundColor" : "#000000",
+  "image" : "",
+  "lineColor" : "#000000",
+  "lineStyle" : "solid",
+  "lineThickness" : 1,
+  "secondaryBackgroundColor" : "",
+  "textSize" : "20px"
+}]]></content>
+        </StyleDefinition>
+    </StyleDefinitions>
+</Entities>

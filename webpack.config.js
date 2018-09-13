@@ -48,6 +48,8 @@ module.exports = function (env, argv) {
             new CleanWebpackPlugin(['build', 'zip']),
             // in case we just want to copy some resources directly to the widget package, then do it here
             new CopyWebpackPlugin([{ from: 'src/static', to: 'static' }]),
+            // This are the entities that must be included toghether with the widget
+            new CopyWebpackPlugin([{ from: 'src/Entities', to: '../../Entities' }]),
             // generates the metadata xml file and adds it to the archive
             new WidgetMetadataGenerator(),
             new DeclarationBundlerPlugin({
