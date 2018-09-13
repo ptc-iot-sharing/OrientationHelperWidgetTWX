@@ -68,7 +68,7 @@ class OrientationHelper extends TWComposerWidget {
                 },
                 'Style': {
                     baseType: 'STYLEDEFINITION',
-                    description: 'Configure the style of the display. Background and foreground color properties are used, as well as font size.',
+                    description: 'Configure the style of the display. Background and foreground color properties are used, as well as font size and line color.',
                     defaultValue: 'OrientationHelperDefaultStyle'
                 }
             }

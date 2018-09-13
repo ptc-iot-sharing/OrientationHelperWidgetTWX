@@ -1,5 +1,20 @@
 # Orientation Helper Widget
 
+Very simple widget for indicating that the user should rotate the device to better view the mashup.
+
+## Available properties
+
+* Message: Main message to show
+* AllowClickBypass: Allow the user to bypass the warning
+* SubMessage: Optional message enabled if AllowClickBypass is true
+* OnlyMobile: Only enforce this setting on mobile devices
+* Style: Configure the style of the display. Background and foreground color properties are used, as well as font size and line color.
+
+## Known issues
+
+* The widget does not function propertly when you click on the "Reload" button on the top of the screen.
+* Multiple instances of this widget are not supported.
+
 ## Building and publishing
 
 The following commands allow you to build and compile your widget:
