@@ -1,6 +1,6 @@
 {
     "name": "OrientationHelper",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A simple widget that displays a warning when the screen orientation is not correct",
     "thingworxServer": "http://localhost:8016",
     "thingworxUser": "Administrator",

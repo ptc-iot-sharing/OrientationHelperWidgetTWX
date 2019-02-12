@@ -16,6 +16,9 @@ export class OrientationHelper extends TWRuntimeWidget {
     pleaseRotateInstance;
 
     renderHtml(): string {
+        if(document.getElementById("pleaserotate-backdrop")) {
+            document.getElementById("pleaserotate-backdrop").remove();
+        }
         import("pleaserotate.js").then((PleaseRotate) => {
             this.pleaseRotateInstance = PleaseRotate;
             this.pleaseRotateInstance.start(this.convertPropertiesToOptions());
